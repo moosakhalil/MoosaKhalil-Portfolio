@@ -6,7 +6,7 @@ import Image from "next/image";
 import SectionHeading from "@/components/SectionHeading";
 import ImageSlider from "@/components/ImageSlider";
 import { certifications, nustAwardImages } from "@/lib/data";
-import { Trophy, ExternalLink, Award, CheckCircle2 } from "lucide-react";
+import { Trophy, CheckCircle2 } from "lucide-react";
 
 export default function Achievements() {
   const ref = useRef(null);

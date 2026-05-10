@@ -5,15 +5,7 @@ import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import SectionHeading from "@/components/SectionHeading";
 import { skills } from "@/lib/data";
-import { GraduationCap, Code2, Layers, Database, Terminal } from "lucide-react";
-
-const categoryIcons: Record<string, any> = {
-  Languages: Terminal,
-  Frontend: Code2,
-  Backend: Layers,
-  Databases: Database,
-  Tools: Terminal,
-};
+import { GraduationCap, Code2 } from "lucide-react";
 
 export default function About() {
   const ref = useRef(null);
