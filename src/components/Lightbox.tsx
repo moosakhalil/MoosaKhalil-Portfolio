@@ -59,7 +59,7 @@ export default function Lightbox({ images, alt, index, onClose }: LightboxProps)
         >
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+            className="absolute z-20 top-4 right-4 p-2.5 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
             aria-label="Close image viewer"
           >
             <X className="w-6 h-6" />
@@ -70,8 +70,15 @@ export default function Lightbox({ images, alt, index, onClose }: LightboxProps)
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.25 }}
-            className="relative w-full h-full max-w-6xl"
+            className="relative w-full h-full max-w-6xl touch-pan-y"
             onClick={(e) => e.stopPropagation()}
+            drag={images.length > 1 ? "x" : false}
+            dragSnapToOrigin
+            dragElastic={0.3}
+            onDragEnd={(_, info) => {
+              if (info.offset.x < -60 || info.velocity.x < -500) next();
+              else if (info.offset.x > 60 || info.velocity.x > 500) prev();
+            }}
           >
             <Image
               src={images[current]}
@@ -86,19 +93,19 @@ export default function Lightbox({ images, alt, index, onClose }: LightboxProps)
             <>
               <button
                 onClick={(e) => { e.stopPropagation(); prev(); }}
-                className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+                className="absolute z-20 left-3 sm:left-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
                 aria-label="Previous image"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
               <button
                 onClick={(e) => { e.stopPropagation(); next(); }}
-                className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+                className="absolute z-20 right-3 sm:right-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
                 aria-label="Next image"
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
-              <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm font-semibold text-white/80">
+              <p className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2 text-sm font-semibold text-white/80">
                 {current + 1} / {images.length}
               </p>
             </>
