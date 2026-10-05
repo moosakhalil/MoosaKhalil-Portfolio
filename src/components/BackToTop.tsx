@@ -20,10 +20,8 @@ export default function BackToTop() {
           initial={{ opacity: 0, scale: 0.5, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.5, y: 20 }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-8 right-8 z-40 p-3 rounded-full bg-accent text-white shadow-lg shadow-accent/25 hover:shadow-accent/40 transition-shadow"
+          className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 p-3 rounded-lg bg-accent text-white shadow-lg shadow-accent/30 hover:bg-accent-dark transition-colors"
           aria-label="Back to top"
         >
           <ArrowUp className="w-5 h-5" />

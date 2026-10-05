@@ -1,115 +1,114 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useState } from "react";
 import Image from "next/image";
-import SectionHeading from "@/components/SectionHeading";
+import Section, { RevealGroup, RevealItem, Reveal } from "@/components/Section";
 import ImageSlider from "@/components/ImageSlider";
-import { certifications, nustAwardImages } from "@/lib/data";
-import { Trophy, CheckCircle2 } from "lucide-react";
+import Lightbox from "@/components/Lightbox";
+import { certifications, nustAwardImages, openHouseImages } from "@/lib/data";
+import { ArrowUpRight, Award, BadgeCheck, Maximize2 } from "lucide-react";
+
+const awards = [
+  {
+    event: "NUST COMPPEC 2026",
+    title: "Appreciation Award",
+    body: "Recognized for innovation and technical excellence in the IoT & Digital Solutions category at a national-level competition, presented to the NUST evaluation panel. Health Sync stood out for its integration of Fitbit data with provider workflows.",
+    images: nustAwardImages,
+    alt: "NUST COMPPEC Award ceremony",
+  },
+  {
+    event: "Bahria University Open House 2026",
+    title: "3rd Position — Final Year Project",
+    body: "Placed third among final year projects at the Bahria University Open House, H-11 Campus, Islamabad, presenting Health Sync to faculty, industry guests and visitors.",
+    images: openHouseImages,
+    alt: "Bahria University Open House award",
+  },
+];
 
 export default function Achievements() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [certIndex, setCertIndex] = useState<number | null>(null);
 
   return (
-    <section id="achievements" className="py-24 bg-white relative overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <SectionHeading 
-          title="Honors & Achievements" 
-          subtitle="Recognition for technical excellence and continuous learning."
-        />
-
-        <div ref={ref} className="space-y-24">
-          {/* NUST Award Spotlight */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7 }}
-            className="grid lg:grid-cols-2 gap-12 items-center"
-          >
-            <div className="order-2 lg:order-1">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-2.5 rounded-xl bg-amber-50 text-amber-500 border border-amber-100">
-                  <Trophy className="w-6 h-6" />
-                </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-slate-900">
-                  NUST COMPPEC 2024
-                </h3>
-              </div>
-
-              <div className="space-y-6">
-                <h4 className="text-xl font-bold text-accent">Appreciation Award</h4>
-                <p className="text-slate-600 text-lg leading-relaxed">
-                  Recognized for <span className="text-slate-900 font-semibold">Innovation and Technical Excellence</span> in IoT & Digital Solutions. 
-                  Competing among the brightest engineers in Pakistan, Health Sync stood out for its seamless integration of Fitbit data and provider workflows.
-                </p>
-                
-                <ul className="space-y-4">
-                  {[
-                    "National Level Competition",
-                    "IoT & Digital Solutions Category",
-                    "Presented to NUST Evaluation Panel",
-                  ].map((item) => (
-                    <li key={item} className="flex items-center gap-3 text-slate-700 font-medium">
-                      <CheckCircle2 className="w-5 h-5 text-accent" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <div className="order-1 lg:order-2 relative">
-              <div className="absolute -inset-4 bg-slate-50 rounded-[2rem] rotate-2 -z-10" />
-              <div className="shadow-2xl rounded-2xl overflow-hidden bg-white border border-slate-100">
-                <ImageSlider 
-                  images={nustAwardImages} 
-                  alt="NUST COMPPEC Award ceremony" 
-                  aspectRatio="aspect-square"
+    <Section id="achievements" label="Recognition" title="Awards & certifications">
+      <RevealGroup className="grid md:grid-cols-2 gap-6 md:gap-8">
+        {awards.map((award) => (
+          <RevealItem key={award.event}>
+            <article className="h-full rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-white dark:bg-slate-900/40 hover:border-accent/40 hover:shadow-xl hover:shadow-slate-200/60 dark:hover:shadow-none hover:-translate-y-1 transition-all duration-500">
+              <div className="border-b border-slate-200 dark:border-slate-800">
+                <ImageSlider
+                  images={award.images}
+                  alt={award.alt}
+                  aspectRatio="aspect-[4/3]"
                   rounded="rounded-none"
                   objectFit="contain"
+                  autoPlay={false}
+                  zoomable
                 />
               </div>
-            </div>
-          </motion.div>
+              <div className="p-6 md:p-8">
+                <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-accent dark:text-accent-light">
+                  <Award className="w-5 h-5" />
+                  {award.event}
+                </p>
+                <h3 className="mt-3 text-xl md:text-2xl font-semibold text-slate-900 dark:text-white">{award.title}</h3>
+                <p className="mt-3 text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">{award.body}</p>
+              </div>
+            </article>
+          </RevealItem>
+        ))}
+      </RevealGroup>
 
-          {/* Certifications Grid */}
-          <div className="space-y-10">
-            <h3 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-              Professional Certifications
-              <div className="h-px bg-slate-100 flex-1" />
-            </h3>
-
-            <div className="grid sm:grid-cols-2 gap-6">
-              {certifications.map((cert, idx) => (
-                <motion.div
-                  key={cert.name}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ delay: 0.3 + (idx * 0.1) }}
-                  className="group relative flex flex-col md:flex-row gap-8 p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-accent/30 hover:bg-white hover:shadow-xl transition-all duration-500"
-                >
-                  <div className="relative w-full md:w-64 h-44 rounded-xl overflow-hidden shrink-0 shadow-sm border border-slate-200/50 bg-white">
-                    <Image src={cert.image} alt={cert.name} fill className="object-contain group-hover:scale-110 transition-transform duration-500" />
-                  </div>
-                  <div className="flex flex-col justify-center py-1">
-                    <div>
-                      <div className="flex items-center gap-2 mb-3">
-                        <div className="w-2 h-2 rounded-full" style={{ background: cert.color }} />
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">{cert.issuer}</span>
-                      </div>
-                      <h4 className="text-xl font-bold text-slate-900 group-hover:text-accent transition-colors leading-tight">
-                        {cert.name}
-                      </h4>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+      <Reveal className="mt-20">
+        <h3 className="text-2xl md:text-3xl font-semibold tracking-tight text-slate-900 dark:text-white mb-8">Certifications</h3>
+      </Reveal>
+      <RevealGroup className="grid sm:grid-cols-2 gap-5">
+        {certifications.map((cert, idx) => (
+          <RevealItem key={cert.name}>
+            <div className="group h-full flex flex-col rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 overflow-hidden hover:border-accent/40 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+              <button
+                onClick={() => setCertIndex(idx)}
+                className="relative aspect-[16/10] bg-white border-b border-slate-200 dark:border-slate-800 cursor-zoom-in overflow-hidden"
+                aria-label={`View ${cert.name} certificate`}
+              >
+                <Image
+                  src={cert.image}
+                  alt={cert.name}
+                  fill
+                  className="object-contain p-3 transition-transform duration-500 group-hover:scale-[1.03]"
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                />
+                <span className="absolute top-3 right-3 p-2 rounded-md bg-slate-900/70 text-white opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity">
+                  <Maximize2 className="w-4 h-4" />
+                </span>
+              </button>
+              <div className="p-5 flex items-start gap-3">
+                <BadgeCheck className="w-6 h-6 shrink-0 text-accent dark:text-accent-light mt-0.5" />
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">{cert.issuer}</p>
+                  <p className="mt-1 text-lg font-medium text-slate-900 dark:text-white leading-snug">{cert.name}</p>
+                  {cert.link && (
+                    <a
+                      href={cert.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 inline-flex items-center gap-1 text-base font-medium text-accent dark:text-accent-light hover:underline"
+                    >
+                      Verify credential <ArrowUpRight className="w-4 h-4" />
+                    </a>
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          </RevealItem>
+        ))}
+      </RevealGroup>
+
+      <Lightbox
+        images={certifications.map((c) => c.image)}
+        alt="Certificate"
+        index={certIndex}
+        onClose={() => setCertIndex(null)}
+      />
+    </Section>
   );
 }

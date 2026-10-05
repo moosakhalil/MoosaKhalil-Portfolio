@@ -1,7 +1,4 @@
-"use client";
-
 import Navbar from "@/components/Navbar";
-import Loader from "@/components/Loader";
 import BackToTop from "@/components/BackToTop";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
@@ -14,7 +11,6 @@ import Contact from "@/components/sections/Contact";
 export default function Home() {
   return (
     <>
-      <Loader />
       <Navbar />
       <main>
         <Hero />

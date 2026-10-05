@@ -1,131 +1,150 @@
 "use client";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import SectionHeading from "@/components/SectionHeading";
+
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import Section, { Reveal } from "@/components/Section";
 import ImageSlider from "@/components/ImageSlider";
-import { projects } from "@/lib/data";
-import { ExternalLink, ArrowUpRight } from "lucide-react";
+import CaseStudyModal from "@/components/CaseStudyModal";
+import { projects, projectSkills, type Project } from "@/lib/data";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
-export default function Projects() {
-  const container = {
-    hidden: {},
-    show: { transition: { staggerChildren: 0.1 } },
-  };
+const filterOptions = ["React.js", "Next.js", "Node.js", "MongoDB", "PostgreSQL"];
 
-  const item = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
-  };
+function ProjectRow({ project, index, onOpen }: { project: Project; index: number; onOpen: () => void }) {
+  const flip = index % 2 === 1;
 
   return (
-    <section id="projects" className="py-24 bg-white relative">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading 
-          title="Featured Projects" 
-          subtitle="Innovative solutions built with a focus on scalability and user experience."
-        />
+    <article className="group grid lg:grid-cols-2 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 overflow-hidden hover:border-accent/40 hover:shadow-xl hover:shadow-slate-200/60 dark:hover:shadow-none transition-all duration-500">
+      <div
+        className={`relative bg-slate-50 dark:bg-slate-900 border-b lg:border-b-0 border-slate-200 dark:border-slate-800 ${
+          flip ? "lg:order-2 lg:border-l" : "lg:border-r"
+        }`}
+      >
+        <div className="h-full flex items-center transition-transform duration-700 group-hover:scale-[1.02]">
+          <div className="w-full">
+            <ImageSlider
+              images={project.images}
+              alt={project.name}
+              aspectRatio="aspect-[16/10]"
+              rounded="rounded-none"
+              objectFit="contain"
+              autoPlay={false}
+              zoomable
+            />
+          </div>
+        </div>
+      </div>
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {projects.map((project) => (
-            <motion.div
-              key={project.name}
-              variants={item}
-              className="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group flex flex-col"
+      <div className="p-6 sm:p-8 lg:p-10 flex flex-col min-w-0">
+        <p className="text-sm font-semibold uppercase tracking-wider text-accent dark:text-accent-light">{project.label}</p>
+        <h3 className="mt-3 text-2xl md:text-3xl font-semibold tracking-tight text-slate-900 dark:text-white">{project.name}</h3>
+        <p className="mt-1 text-base md:text-lg text-slate-500 dark:text-slate-400">{project.tagline}</p>
+
+        <p className="mt-5 text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">{project.description}</p>
+        <p className="mt-4 text-base text-slate-600 dark:text-slate-400">
+          <span className="font-semibold text-slate-800 dark:text-slate-200">Role: </span>
+          {project.role}
+        </p>
+
+        <div className="mt-6 flex flex-wrap gap-2">
+          {project.stack.map((tech) => (
+            <span key={tech} className="px-3 py-1 rounded-md bg-accent-50 dark:bg-accent/15 text-accent dark:text-accent-light text-sm font-medium">
+              {tech}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-8 lg:mt-auto lg:pt-8 flex flex-wrap items-center gap-3">
+          <button
+            onClick={onOpen}
+            className="group/btn inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-accent text-white text-base font-medium hover:bg-accent-dark transition-colors"
+          >
+            Case study
+            <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
+          </button>
+          {project.url && (
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-5 py-3 rounded-lg border border-slate-300 dark:border-slate-700 text-base font-medium text-slate-800 dark:text-slate-100 hover:border-accent hover:text-accent dark:hover:text-accent-light transition-colors"
             >
-              {/* Image Slider Header */}
-              <div className="relative">
-                <ImageSlider 
-                  images={project.images} 
-                  alt={project.name} 
-                  aspectRatio="aspect-[4/3]"
-                  rounded="rounded-none"
-                  objectFit="contain"
-                  autoPlay={true}
-                />
-                
-                {/* Overlay Badge */}
-                <div className="absolute top-4 right-4 flex gap-2">
-                  <motion.a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="p-2 rounded-lg bg-white/90 backdrop-blur-sm text-accent shadow-sm border border-slate-200/50 hover:bg-accent hover:text-white transition-all"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                  </motion.a>
-                </div>
-              </div>
+              Live site <ArrowUpRight className="w-5 h-5" />
+            </a>
+          )}
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-5 py-3 rounded-lg border border-slate-300 dark:border-slate-700 text-base font-medium text-slate-800 dark:text-slate-100 hover:border-accent hover:text-accent dark:hover:text-accent-light transition-colors"
+            >
+              Source <ArrowUpRight className="w-5 h-5" />
+            </a>
+          )}
+        </div>
+      </div>
+    </article>
+  );
+}
 
-              {/* Project Info */}
-              <div className="p-6 md:p-8 flex-1 flex flex-col">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-accent transition-colors">
-                    {project.name}
-                  </h3>
-                  <div className="p-1 rounded-full bg-slate-50 text-slate-400 group-hover:text-accent transition-colors">
-                    <ArrowUpRight className="w-5 h-5" />
-                  </div>
-                </div>
+export default function Projects() {
+  const [skill, setSkill] = useState<string | null>(null);
+  const [openSlug, setOpenSlug] = useState<string | null>(null);
+  const openProject = projects.find((p) => p.slug === openSlug);
+  const visible = projects.filter((p) => !skill || projectSkills(p).includes(skill));
 
-                <p className="text-slate-500 text-sm leading-relaxed mb-6 line-clamp-3">
-                  {project.description}
-                </p>
+  return (
+    <Section
+      id="projects"
+      label="Projects"
+      title="Selected work"
+      intro="Production client work, an award-winning final year project and live personal builds."
+    >
+      <Reveal className="flex flex-wrap items-center gap-2 mb-10">
+        {[null, ...filterOptions].map((opt) => {
+          const active = skill === opt;
+          return (
+            <button
+              key={opt ?? "all"}
+              onClick={() => setSkill(opt)}
+              aria-pressed={active}
+              className={`px-4 py-2 rounded-lg text-[15px] font-medium transition-colors ${
+                active
+                  ? "bg-accent text-white"
+                  : "border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-accent hover:text-accent dark:hover:text-accent-light"
+              }`}
+            >
+              {opt ?? "All"}
+            </button>
+          );
+        })}
+      </Reveal>
 
-                <div className="mt-auto pt-6 border-t border-slate-50">
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.stack.slice(0, 4).map((tech) => (
-                      <span
-                        key={tech}
-                        className="text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-md bg-slate-50 text-slate-500 border border-slate-100"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                    {project.stack.length > 4 && (
-                      <span className="text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-md bg-slate-50 text-slate-400">
-                        +{project.stack.length - 4}
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="flex items-center gap-4">
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-accent text-white text-sm font-bold shadow-md shadow-accent/20 hover:bg-accent-dark transition-all"
-                    >
-                      Live Preview
-                    </a>
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 transition-all flex items-center justify-center hover:scale-110"
-                    >
-                      <Image 
-                        src="/images/logos/github.png" 
-                        alt="GitHub" 
-                        width={32} 
-                        height={32} 
-                        className="transition-all"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
+      <motion.div layout className="space-y-8 md:space-y-10">
+        <AnimatePresence mode="popLayout">
+          {visible.map((project, i) => (
+            <motion.div
+              key={project.slug}
+              layout
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="reveal"
+            >
+              <ProjectRow project={project} index={i} onOpen={() => setOpenSlug(project.slug)} />
             </motion.div>
           ))}
-        </motion.div>
-      </div>
-    </section>
+        </AnimatePresence>
+      </motion.div>
+
+      <AnimatePresence>
+        {openProject && (
+          <CaseStudyModal key={openProject.slug} project={openProject} onClose={() => setOpenSlug(null)} />
+        )}
+      </AnimatePresence>
+    </Section>
   );
 }

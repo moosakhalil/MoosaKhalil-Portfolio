@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -11,13 +12,14 @@ const config: Config = {
       colors: {
         background: "#ffffff",
         foreground: "#0f172a",
+        // Single theme color (blue-600 family)
         accent: {
-          DEFAULT: "#0284c7",
-          light: "#38bdf8",
-          dark: "#0369a1",
-          50: "#f0f9ff",
-          100: "#e0f2fe",
-          200: "#bae6fd",
+          DEFAULT: "#2563eb",
+          light: "#60a5fa",
+          dark: "#1d4ed8",
+          50: "#eff6ff",
+          100: "#dbeafe",
+          200: "#bfdbfe",
         },
         surface: {
           DEFAULT: "#ffffff",
@@ -29,7 +31,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-outfit)", "system-ui", "sans-serif"],
+        display: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
       animation: {
         float: "float 4s ease-in-out infinite",

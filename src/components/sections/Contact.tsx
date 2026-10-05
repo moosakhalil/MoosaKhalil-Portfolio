@@ -1,108 +1,103 @@
 "use client";
-import Image from "next/image";
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useEffect, useState } from "react";
+import Section, { RevealGroup, RevealItem } from "@/components/Section";
+import { GithubIcon, LinkedinIcon } from "@/components/BrandIcons";
 import { contactInfo, navLinks } from "@/lib/data";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { ArrowUpRight, Check, Copy, Mail, MapPin, Phone } from "lucide-react";
 
 export default function Contact() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [copied, setCopied] = useState(false);
+  const [toast, setToast] = useState<string | null>(null);
 
-  const infoItems = [
-    { icon: Mail, label: "Email", value: contactInfo.email, href: `mailto:${contactInfo.email}` },
-    { icon: Phone, label: "Phone", value: contactInfo.phone, href: `tel:${contactInfo.phone}` },
-    { icon: MapPin, label: "Location", value: "Islamabad, Pakistan", href: "#" },
-  ];
+  useEffect(() => {
+    if (!toast) return;
+    const t = setTimeout(() => setToast(null), 2500);
+    return () => clearTimeout(t);
+  }, [toast]);
 
-  const socialLinks = [
-    { 
-      label: "LinkedIn", 
-      href: contactInfo.linkedin,
-      icon: <Image src="/images/logos/linkedin.png" alt="LinkedIn" width={20} height={20} className="opacity-70 group-hover:opacity-100 transition-opacity" />
-    },
-    { 
-      label: "GitHub", 
-      href: contactInfo.github,
-      icon: <Image src="/images/logos/github.png" alt="GitHub" width={20} height={20} className="opacity-70 group-hover:opacity-100 transition-opacity" />
-    },
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(contactInfo.email);
+      setCopied(true);
+      setToast("Email copied to clipboard");
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setToast("Couldn't copy — please copy it manually");
+    }
+  };
+
+  const channels = [
+    { icon: Mail, label: "Email", value: contactInfo.email, href: `mailto:${contactInfo.email}`, external: false },
+    { icon: Phone, label: "Phone", value: contactInfo.phone, href: `tel:${contactInfo.phone}`, external: false },
+    { icon: LinkedinIcon, label: "LinkedIn", value: "linkedin.com/in/moosadev", href: contactInfo.linkedin, external: true },
+    { icon: GithubIcon, label: "GitHub", value: "github.com/moosakhalil", href: contactInfo.github, external: true },
   ];
 
   return (
-    <section id="contact" className="py-24 bg-white relative overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div ref={ref} className="max-w-3xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7 }}
+    <>
+      <Section
+        id="contact"
+        label="Contact"
+        title="Let's work together"
+        intro="I'm open to full-time Software Engineer roles and interesting projects. The fastest way to reach me is email."
+      >
+        <RevealGroup className="grid sm:grid-cols-2 gap-4 md:gap-5">
+          {channels.map(({ icon: Icon, label, value, href, external }) => (
+            <RevealItem key={label}>
+              <a
+                href={href}
+                target={external ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                className="group h-full flex items-center gap-4 md:gap-5 p-5 md:p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 hover:border-accent hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              >
+                <span className="flex items-center justify-center w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-accent-50 dark:bg-accent/15 text-accent dark:text-accent-light group-hover:bg-accent group-hover:text-white transition-colors duration-300">
+                  <Icon className="w-6 h-6" />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">{label}</span>
+                  <span className="block text-base md:text-lg font-medium text-slate-900 dark:text-white break-all">{value}</span>
+                </span>
+                <ArrowUpRight className="w-5 h-5 shrink-0 text-slate-400 group-hover:text-accent group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
+              </a>
+            </RevealItem>
+          ))}
+        </RevealGroup>
+
+        <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+          <button
+            onClick={copyEmail}
+            className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-accent text-white text-base font-medium hover:bg-accent-dark transition-colors"
           >
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6">
-              Let&apos;s build something <span className="gradient-text">exceptional</span>
-            </h2>
-            <p className="text-slate-500 text-lg leading-relaxed mb-12">
-              I&apos;m always open to discussing new projects, creative ideas or opportunities to be part of your vision. 
-              Feel free to reach out through any of the channels below.
-            </p>
-
-            <div className="grid md:grid-cols-3 gap-6 mb-12">
-              {infoItems.map((item, idx) => {
-                const isLink = item.href !== "#";
-                const Component = isLink ? motion.a : motion.div;
-                
-                return (
-                  <Component
-                    key={item.label}
-                    {...(isLink ? { href: item.href } : {})}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.1 * idx }}
-                    className={`flex flex-col items-center gap-4 p-8 rounded-3xl bg-slate-50 border border-slate-100 transition-all duration-300 group ${isLink ? "hover:bg-white hover:shadow-xl hover:border-accent/20 cursor-pointer" : ""}`}
-                  >
-                    <div className={`p-4 rounded-2xl bg-white shadow-sm transition-all duration-300 ${isLink ? "text-accent group-hover:bg-accent group-hover:text-white" : "text-slate-400"}`}>
-                      <item.icon className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">{item.label}</p>
-                      <p className="text-slate-900 font-bold text-sm">{item.value}</p>
-                    </div>
-                  </Component>
-                );
-              })}
-            </div>
-
-            <div className="flex justify-center gap-4">
-              {socialLinks.map((social) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-slate-900 text-white font-bold text-sm uppercase tracking-widest hover:bg-accent transition-all group"
-                >
-                  {social.icon}
-                  <span className="brightness-0 invert">{social.label}</span>
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-
-        <div className="mt-24 pt-12 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-slate-400 text-sm font-medium">
-            © {new Date().getFullYear()} Muhammad Moosa Khalil. Built with Next.js & Framer Motion.
+            {copied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
+            {copied ? "Email copied" : "Copy email address"}
+          </button>
+          <p className="flex items-center gap-2 text-base text-slate-600 dark:text-slate-400">
+            <MapPin className="w-5 h-5 text-accent dark:text-accent-light" />
+            {contactInfo.location} · Open to remote
           </p>
-          <div className="flex gap-8">
-            {navLinks.map(link => (
-              <a key={link.href} href={link.href} className="text-slate-400 hover:text-accent text-sm font-bold uppercase tracking-wider transition-colors">
+        </div>
+      </Section>
+
+      <footer className="border-t border-slate-200 dark:border-slate-800">
+        <div className="max-w-6xl mx-auto px-5 sm:px-8 py-10 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-base text-slate-500 dark:text-slate-400 text-center md:text-left">
+            © {new Date().getFullYear()} Muhammad Moosa Khalil
+          </p>
+          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-3">
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} className="text-base text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-light transition-colors">
                 {link.label}
               </a>
             ))}
-          </div>
+          </nav>
         </div>
-      </div>
-    </section>
+      </footer>
+
+      {toast && (
+        <div role="status" className="toast toast-success">
+          {toast}
+        </div>
+      )}
+    </>
   );
 }

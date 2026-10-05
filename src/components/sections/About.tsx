@@ -1,166 +1,137 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
 import Image from "next/image";
-import SectionHeading from "@/components/SectionHeading";
-import { skills } from "@/lib/data";
-import { GraduationCap, Code2 } from "lucide-react";
+import type { IconType } from "react-icons";
+import {
+  SiJavascript, SiTypescript, SiReact, SiNextdotjs, SiTailwindcss, SiNodedotjs, SiExpress,
+  SiMongodb, SiPostgresql, SiPrisma, SiSupabase, SiFirebase, SiJsonwebtokens, SiVercel,
+  SiRender, SiGit, SiGithub, SiWebpack,
+} from "react-icons/si";
+import { Database, Webhook, UsersRound, LockKeyhole, Gauge, ScrollText, type LucideIcon } from "lucide-react";
+import Section, { Reveal, RevealGroup, RevealItem } from "@/components/Section";
+import { skillGroups } from "@/lib/data";
+
+// One-color icons so the grid stays uniform; tinted with the theme color.
+const skillIcons: Record<string, IconType | LucideIcon> = {
+  JavaScript: SiJavascript,
+  TypeScript: SiTypescript,
+  SQL: Database,
+  "React.js": SiReact,
+  "Next.js": SiNextdotjs,
+  "Tailwind CSS": SiTailwindcss,
+  "Node.js": SiNodedotjs,
+  "Express.js": SiExpress,
+  "REST APIs": Webhook,
+  MongoDB: SiMongodb,
+  PostgreSQL: SiPostgresql,
+  "Prisma ORM": SiPrisma,
+  Supabase: SiSupabase,
+  Firebase: SiFirebase,
+  JWT: SiJsonwebtokens,
+  RBAC: UsersRound,
+  "AES-256-GCM": LockKeyhole,
+  "Rate Limiting": Gauge,
+  "Audit Logging": ScrollText,
+  Vercel: SiVercel,
+  Render: SiRender,
+  Git: SiGit,
+  GitHub: SiGithub,
+  Webpack: SiWebpack,
+};
+
+const education = [
+  {
+    school: "Bahria University, Islamabad",
+    degree: "BS Software Engineering",
+    dates: "2022 – 2026",
+    logo: "/images/logos/bahria.png",
+    detail: "Coursework: Data Structures, Algorithms, Database Systems, Web Engineering, Software Design Patterns",
+  },
+  {
+    school: "Cadet College Petaro",
+    degree: "Matric (Science) & FSc (Pre-Engineering)",
+    dates: "2017 – 2021",
+    logo: "/images/logos/college.png",
+    detail: "",
+  },
+];
 
 export default function About() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const education = [
-    {
-      school: "Bahria University Islamabad",
-      degree: "BS Software Engineering | 2022 – 2026",
-      logo: "/images/logos/bahria.png",
-      courses: ["Data Structures", "Algorithms", "Web Engineering", "Database Systems", "Software Design"]
-    },
-    {
-      school: "Cadet College Petaro",
-      degree: "FSC Pre-Engineering | 2019 – 2021",
-      logo: "/images/logos/college.png",
-      desc: "Completed pre-engineering studies with strong foundation in mathematics and physics."
-    }
-  ];
-
-  // Helper to render skill icons
-  const renderSkill = (skill: string) => {
-    let fileName = skill.toLowerCase().replace('.js', '').replace(' ', '-');
-    if (skill === "MongoDB") fileName = "mongo";
-    
-    return (
-      <motion.div
-        key={skill}
-        whileHover={{ y: -8 }}
-        className="flex flex-col items-center gap-4 group cursor-pointer"
-      >
-        <div className="relative w-24 h-24 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-          <Image 
-            src={`/images/logos/${fileName}.png`}
-            alt={skill}
-            width={80}
-            height={80}
-            className="object-contain"
-            onError={(e) => {
-              e.currentTarget.style.display = 'none';
-              e.currentTarget.parentElement!.querySelector('.fallback')!.classList.remove('hidden');
-            }}
-          />
-          <div className="fallback hidden absolute inset-0 flex items-center justify-center text-slate-200">
-            <span className="text-sm font-black">{skill.substring(0, 2).toUpperCase()}</span>
-          </div>
-        </div>
-        <span className="text-xs font-bold text-slate-500 group-hover:text-slate-900 transition-colors tracking-wide uppercase">
-          {skill}
-        </span>
-      </motion.div>
-    );
-  };
-
   return (
-    <section id="about" className="py-24 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <SectionHeading title="About Me" />
+    <Section id="about" label="About" title="Building production software, end to end.">
+      <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16">
+        <Reveal className="space-y-6 text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
+          <p>
+            I&apos;m a <span className="text-slate-900 dark:text-white font-medium">Full-Stack Software Engineer</span> (BS
+            Software Engineering, 2026) who ships production web applications with React.js, Next.js, Node.js, TypeScript,
+            MongoDB and PostgreSQL.
+          </p>
+          <p>
+            I&apos;m currently building production ERP / e-commerce and laundry services applications for a client, owning
+            the work from database schema and secure REST APIs to the production UI. Before that I independently built and
+            deployed a complete rental management system for a car rental agency.
+          </p>
+          <p>
+            My final year project, Health Sync, won the Appreciation Award at NUST COMPPEC and 3rd place at the Bahria
+            University FYP Open House.
+          </p>
+        </Reveal>
 
-        <div ref={ref} className="space-y-32">
-          
-          {/* 1. Bio Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <p className="text-slate-600 text-2xl leading-relaxed mb-6">
-              Results-driven <span className="text-slate-900 font-semibold italic">Software Engineer</span> with hands-on experience in
-              full-stack web development, API integration, and scalable
-              application architecture. Proficient in <span className="text-accent font-bold">React.js, Next.js, and Node.js</span>.
-            </p>
-            <div className="h-1 w-24 bg-accent/20 mx-auto rounded-full" />
-          </motion.div>
+        <Reveal delay={0.1}>
+          <h3 className="text-sm md:text-base font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-6">Education</h3>
+          <ul className="space-y-5">
+            {education.map((edu) => (
+              <li
+                key={edu.school}
+                className="flex gap-5 p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 hover:border-accent/40 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
+              >
+                <div className="relative w-16 h-16 shrink-0 rounded-lg border border-slate-200 dark:border-slate-700 bg-white p-2">
+                  <Image src={edu.logo} alt="" width={56} height={56} className="object-contain w-full h-full" />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-lg font-semibold text-slate-900 dark:text-white leading-snug">{edu.degree}</p>
+                  <p className="text-base text-slate-600 dark:text-slate-300">{edu.school}</p>
+                  <p className="text-sm font-medium text-accent dark:text-accent-light mt-1">{edu.dates}</p>
+                  {edu.detail && <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">{edu.detail}</p>}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+      </div>
 
-          {/* 2. Education Section */}
-          <div className="space-y-12">
-            <h3 className="text-3xl font-display font-bold text-slate-900 flex items-center justify-center gap-3">
-              <GraduationCap className="w-8 h-8 text-accent" />
-              Academic Background
-            </h3>
-            
-            <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-              {education.map((edu, idx) => (
-                <motion.div 
-                  key={edu.school}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.2 + (idx * 0.1) }}
-                  className="flex flex-col sm:flex-row items-center sm:items-start gap-8 p-8 rounded-[2rem] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 group"
-                >
-                  <div className="relative w-28 h-28 flex items-center justify-center shrink-0">
-                    <Image 
-                      src={edu.logo} 
-                      alt={edu.school} 
-                      width={96} 
-                      height={96} 
-                      className="relative z-10 object-contain transition-transform duration-500 group-hover:scale-110" 
-                      onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                        e.currentTarget.parentElement!.querySelector('.edu-fallback')!.classList.remove('hidden');
-                      }}
-                    />
-                    <div className="edu-fallback hidden absolute inset-0 flex items-center justify-center text-slate-200">
-                      <GraduationCap className="w-16 h-16" />
-                    </div>
-                  </div>
-                  
-                  <div className="flex-1 text-center sm:text-left">
-                    <h3 className="text-2xl font-bold text-slate-900 group-hover:text-accent transition-colors leading-tight">
-                      {edu.school}
-                    </h3>
-                    <p className="text-accent font-semibold text-lg mt-2 mb-4">
-                      {edu.degree}
-                    </p>
-                    
-                    {edu.courses ? (
-                      <div className="flex flex-wrap justify-center sm:justify-start gap-2 mt-6">
-                        {edu.courses.map((course) => (
-                          <span key={course} className="text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-lg bg-white text-slate-400 border border-slate-100 shadow-sm">
-                            {course}
-                          </span>
-                        ))}
+      <div className="mt-20 md:mt-24">
+        <Reveal>
+          <h3 className="text-2xl md:text-3xl font-semibold tracking-tight text-slate-900 dark:text-white mb-8">Technical skills</h3>
+        </Reveal>
+
+        <div className="space-y-10">
+          {skillGroups.map((group) => (
+            <div key={group.title}>
+              <p className="text-sm md:text-base font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-4">
+                {group.title}
+              </p>
+              <RevealGroup className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+                {group.skills.map(({ name }) => {
+                  const Icon = skillIcons[name];
+                  return (
+                    <RevealItem key={name}>
+                      <div className="group h-full flex items-center gap-3 sm:gap-4 p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 hover:border-accent/50 hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+                        <span className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 shrink-0 rounded-lg bg-accent-50 dark:bg-accent/15 text-accent dark:text-accent-light group-hover:bg-accent group-hover:text-white transition-colors duration-300">
+                          {Icon && <Icon className="w-6 h-6" aria-hidden="true" />}
+                        </span>
+                        <span className="min-w-0 text-[15px] sm:text-base font-medium text-slate-800 dark:text-slate-100 leading-tight">
+                          {name}
+                        </span>
                       </div>
-                    ) : (
-                      <p className="text-slate-500 text-base leading-relaxed">{edu.desc}</p>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
+                    </RevealItem>
+                  );
+                })}
+              </RevealGroup>
             </div>
-          </div>
-
-          {/* 3. Technical Expertise Section */}
-          <div className="space-y-16">
-            <h3 className="text-3xl font-display font-bold text-slate-900 flex items-center justify-center gap-3">
-              <Code2 className="w-8 h-8 text-accent" />
-              Technical Arsenal
-            </h3>
-
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.2 }}
-              className="max-w-5xl mx-auto"
-            >
-              <div className="flex flex-wrap justify-center gap-x-12 gap-y-16 lg:gap-x-16">
-                {Object.values(skills).flat().map((skill) => renderSkill(skill))}
-              </div>
-            </motion.div>
-          </div>
-
+          ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Inter } from "next/font/google";
+import Providers from "./providers";
+import { contactInfo, siteUrl } from "@/lib/data";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,30 +10,50 @@ const inter = Inter({
   display: "swap",
 });
 
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
-  display: "swap",
-});
+const title = "Muhammad Moosa Khalil | Full-Stack Software Engineer";
+const description =
+  "Full-Stack Software Engineer shipping production web apps end to end with React.js, Next.js, Node.js, TypeScript, MongoDB and PostgreSQL. NUST COMPPEC award winner.";
 
 export const metadata: Metadata = {
-  title: "Muhammad Moosa Khalil | Full-Stack Software Engineer",
-  description:
-    "Portfolio of Muhammad Moosa Khalil — a results-driven Full-Stack Software Engineer specializing in React.js, Next.js, and Node.js.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
   keywords: [
     "Muhammad Moosa Khalil",
     "Full-Stack Developer",
+    "Software Engineer",
     "Next.js Developer",
     "React Developer",
-    "Software Engineer",
+    "MERN Stack Developer",
+    "Islamabad",
   ],
   authors: [{ name: "Muhammad Moosa Khalil" }],
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Muhammad Moosa Khalil | Full-Stack Software Engineer",
-    description:
-      "Building scalable web apps & real-time platforms.",
+    title,
+    description,
+    url: siteUrl,
+    siteName: "Muhammad Moosa Khalil",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Muhammad Moosa Khalil",
+  jobTitle: "Full-Stack Software Engineer",
+  url: siteUrl,
+  email: `mailto:${contactInfo.email}`,
+  address: { "@type": "PostalAddress", addressLocality: "Islamabad", addressCountry: "PK" },
+  alumniOf: { "@type": "CollegeOrUniversity", name: "Bahria University" },
+  sameAs: [contactInfo.github, contactInfo.linkedin],
+  knowsAbout: ["React.js", "Next.js", "Node.js", "TypeScript", "MongoDB", "PostgreSQL"],
 };
 
 export default function RootLayout({
@@ -40,9 +62,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} ${outfit.variable} antialiased`}>
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.variable} antialiased`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

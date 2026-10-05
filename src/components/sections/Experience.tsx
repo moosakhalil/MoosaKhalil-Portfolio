@@ -1,93 +1,125 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import SectionHeading from "@/components/SectionHeading";
-import ImageSlider from "@/components/ImageSlider";
+import { motion, useScroll, useSpring } from "framer-motion";
+import Section, { Reveal } from "@/components/Section";
+import ImageGrid from "@/components/ImageGrid";
 import { experiences, experienceImages } from "@/lib/data";
-import { Briefcase, Calendar } from "lucide-react";
+import { Briefcase } from "lucide-react";
 
 export default function Experience() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const listRef = useRef(null);
+  // Timeline line fills in the theme color as you scroll through the section
+  const { scrollYProgress } = useScroll({ target: listRef, offset: ["start 75%", "end 60%"] });
+  const fill = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
   return (
-    <section id="experience" className="py-24 bg-slate-50 relative overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <SectionHeading 
-          title="Professional Journey" 
-          subtitle="A timeline of my professional growth and industry experience."
-        />
+    <Section
+      id="experience"
+      label="Experience"
+      title="Where I've worked"
+      intro="Production client work and industry experience, most recent first."
+    >
+      <div ref={listRef} className="relative">
+        {/* Timeline rail */}
+        <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-slate-200 dark:bg-slate-800" />
+        <motion.div style={{ scaleY: fill }} className="absolute left-[11px] top-2 bottom-2 w-0.5 origin-top bg-accent" />
 
-        <div ref={ref} className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left - Timeline */}
-          <div className="space-y-12">
-            {experiences.map((exp, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="relative pl-10 border-l-2 border-slate-200 group"
-              >
-                {/* Connector Dot */}
-                <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-white border-2 border-slate-200 group-hover:border-accent group-hover:scale-125 transition-all duration-300" />
-                
-                <div className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm group-hover:shadow-md transition-shadow">
-                  <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 rounded-lg bg-accent-50 text-accent">
-                        <Briefcase className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-slate-900">{exp.title}</h3>
-                        <p className="text-accent font-semibold text-sm">{exp.company}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 text-slate-500 text-sm font-medium bg-slate-50 px-3 py-1.5 rounded-full">
-                      <Calendar className="w-4 h-4" />
-                      {exp.date}
+        <div className="space-y-12 md:space-y-16">
+          {experiences.map((exp) => (
+            <Reveal key={exp.title}>
+              <article className="relative pl-9 sm:pl-12 md:pl-16">
+                <span className="absolute left-0 top-1 flex items-center justify-center w-6 h-6 rounded-full bg-white dark:bg-slate-950 border-2 border-accent">
+                  <span className="w-2 h-2 rounded-full bg-accent" />
+                </span>
+
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm md:text-base">
+                  <span className="font-semibold text-accent dark:text-accent-light">{exp.date}</span>
+                  <span className="text-slate-500 dark:text-slate-400">{exp.location}</span>
+                  {exp.current && (
+                    <span className="px-2.5 py-0.5 rounded-full bg-accent text-white text-xs font-medium">Current</span>
+                  )}
+                  {exp.nda && (
+                    <span
+                      className="px-2.5 py-0.5 rounded-full border border-accent/40 text-accent dark:text-accent-light text-xs font-medium"
+                      title="Client identity and further details withheld under NDA"
+                    >
+                      Under NDA
+                    </span>
+                  )}
+                </div>
+
+                <div className="mt-4 p-5 sm:p-6 md:p-8 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 hover:border-accent/40 hover:shadow-lg transition-all duration-300">
+                  <div className="flex items-start gap-4">
+                    <span className="hidden sm:flex items-center justify-center w-12 h-12 shrink-0 rounded-lg bg-accent-50 dark:bg-accent/15 text-accent dark:text-accent-light">
+                      <Briefcase className="w-6 h-6" />
+                    </span>
+                    <div className="min-w-0">
+                      <h3 className="text-xl md:text-2xl font-semibold text-slate-900 dark:text-white">{exp.title}</h3>
+                      <p className="mt-1 text-base md:text-lg text-slate-600 dark:text-slate-300">
+                        {exp.company}
+                        {exp.subtitle && <span className="text-slate-500 dark:text-slate-400"> — {exp.subtitle}</span>}
+                      </p>
                     </div>
                   </div>
 
-                  <ul className="space-y-3">
-                    {exp.bullets.map((bullet, bIdx) => (
-                      <li key={bIdx} className="flex items-start gap-3 text-slate-600 text-sm leading-relaxed">
-                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent/40 shrink-0" />
-                        {bullet}
-                      </li>
+                  <ul className="mt-6 space-y-3 list-disc pl-4 sm:pl-5 marker:text-accent text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+                    {exp.bullets.map((bullet) => (
+                      <li key={bullet}>{bullet}</li>
                     ))}
                   </ul>
-                </div>
-              </motion.div>
-            ))}
-          </div>
 
-          {/* Right - Image Slider */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="relative"
-          >
-            <div className="absolute -inset-4 bg-accent-100 rounded-[2.5rem] -rotate-2 -z-10" />
-            <div className="shadow-2xl rounded-2xl overflow-hidden bg-white border border-slate-100">
-              <ImageSlider 
-                images={experienceImages} 
-                alt="Experience gallery" 
-                aspectRatio="aspect-[4/5]"
-                rounded="rounded-none"
-                objectFit="contain"
-              />
-              <div className="p-6 bg-white border-t border-slate-100">
-                <p className="text-slate-500 text-sm text-center font-medium">
-                  Showcasing our workspace, team collaborations, and development environment.
-                </p>
-              </div>
-            </div>
-          </motion.div>
+                  {exp.architecture.length > 0 && (
+                    <div className="mt-6 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 md:p-5">
+                      <p className="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">System overview</p>
+                      <div className="mt-3 flex flex-wrap items-center gap-2">
+                        {exp.architecture.map((node, i) => (
+                          <span key={node} className="flex items-center gap-2">
+                            <span className="px-3 py-1.5 rounded-md bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm md:text-base font-medium text-slate-800 dark:text-slate-100">
+                              {node}
+                            </span>
+                            {i < exp.architecture.length - 1 && <span className="text-accent font-semibold">→</span>}
+                          </span>
+                        ))}
+                      </div>
+                      {exp.modules.length > 0 && (
+                        <p className="mt-3 text-sm md:text-base text-slate-600 dark:text-slate-400">
+                          ERP modules: {exp.modules.join(", ")}
+                        </p>
+                      )}
+                    </div>
+                  )}
+
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {[...exp.domains, ...exp.stack].map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-3 py-1 rounded-md bg-accent-50 dark:bg-accent/15 text-accent dark:text-accent-light text-sm font-medium"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {exp.company === "Jazba Innovations" && (
+                    <div className="mt-8">
+                      <ImageGrid
+                        images={experienceImages}
+                        alt="Jazba Innovations internship certificate"
+                        fit="contain"
+                        className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl"
+                      />
+                      <p className="mt-3 text-sm md:text-base text-slate-500 dark:text-slate-400">
+                        Internship certificate and recognition from Jazba Innovations. Click to enlarge.
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </article>
+            </Reveal>
+          ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
