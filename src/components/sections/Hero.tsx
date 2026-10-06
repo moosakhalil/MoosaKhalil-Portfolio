@@ -22,14 +22,12 @@ export default function Hero() {
 
   return (
     <section className="relative pt-28 pb-20 md:pt-36 lg:pt-40 md:pb-28 overflow-hidden">
-      {/* Single soft wash of the theme color */}
-      <div className="absolute inset-x-0 top-0 h-[520px] bg-gradient-to-b from-accent-50/80 to-transparent dark:from-accent/10 pointer-events-none" />
 
       <div className="relative max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-[1fr_auto] gap-12 lg:gap-16 items-center">
         <motion.div variants={container} initial="hidden" animate="show" className="order-2 lg:order-1 min-w-0">
           <motion.p
             variants={item}
-            className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-accent/20 bg-white dark:bg-slate-900 text-sm md:text-base font-medium text-accent dark:text-accent-light"
+            className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-accent/20 bg-white dark:bg-stone-900 text-sm md:text-base font-medium text-accent dark:text-accent-light"
           >
             <span className="relative flex w-2 h-2">
               <span className="absolute inline-flex w-full h-full rounded-full bg-accent opacity-60 animate-ping" />
@@ -40,7 +38,7 @@ export default function Hero() {
 
           <motion.h1
             variants={item}
-            className="mt-6 text-[2.6rem] leading-[1.08] sm:text-6xl lg:text-7xl font-semibold tracking-tight text-slate-900 dark:text-white"
+            className="mt-6 text-[2.6rem] leading-[1.08] sm:text-6xl lg:text-7xl font-semibold tracking-tight text-stone-900 dark:text-white"
           >
             Muhammad Moosa Khalil
           </motion.h1>
@@ -48,15 +46,15 @@ export default function Hero() {
             Full-Stack Software Engineer
           </motion.p>
 
-          <motion.p variants={item} className="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
+          <motion.p variants={item} className="mt-6 text-lg sm:text-xl text-stone-600 dark:text-stone-300 leading-relaxed max-w-2xl">
             I build production web applications end to end with React.js, Next.js, Node.js, TypeScript, MongoDB and
-            PostgreSQL — from database schema and secure REST APIs to the production UI.
+            PostgreSQL, from database schema and secure REST APIs to the production UI.
           </motion.p>
 
-          <motion.dl variants={item} className="mt-10 grid grid-cols-3 max-w-xl border-y border-slate-200 dark:border-slate-800 divide-x divide-slate-200 dark:divide-slate-800">
+          <motion.dl variants={item} className="mt-10 grid grid-cols-3 max-w-xl border-y border-stone-200 dark:border-stone-800 divide-x divide-stone-200 dark:divide-stone-800">
             {heroStats.map((stat) => (
               <div key={stat.label} className="py-5 px-3 sm:px-6 first:pl-0 flex flex-col-reverse justify-end">
-                <dt className="mt-1 text-sm sm:text-base text-slate-500 dark:text-slate-400 leading-snug">{stat.label}</dt>
+                <dt className="mt-1 text-sm sm:text-base text-stone-500 dark:text-stone-400 leading-snug">{stat.label}</dt>
                 <dd className="text-3xl sm:text-4xl font-semibold text-accent dark:text-accent-light">{stat.value}</dd>
               </div>
             ))}
@@ -65,15 +63,15 @@ export default function Hero() {
           <motion.div variants={item} className="mt-10 flex flex-col sm:flex-row gap-3">
             <button
               onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
-              className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-accent text-white text-base font-medium shadow-sm shadow-accent/30 hover:bg-accent-dark hover:-translate-y-0.5 transition-all"
+              className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-accent text-white text-base font-medium shadow-sm shadow-accent/30 hover:bg-accent-dark hover:-transtone-y-0.5 transition-all"
             >
               View projects
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-5 h-5 group-hover:transtone-x-1 transition-transform" />
             </button>
             <a
               href="/Moosa_CV.pdf"
               download
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 text-base font-medium hover:border-accent hover:text-accent dark:hover:text-accent-light hover:-translate-y-0.5 transition-all"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-100 text-base font-medium hover:border-accent hover:text-accent dark:hover:text-accent-light hover:-transtone-y-0.5 transition-all"
             >
               Download resume
               <Download className="w-5 h-5" />
@@ -88,7 +86,7 @@ export default function Hero() {
                 target={s.href.startsWith("http") ? "_blank" : undefined}
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-slate-200 dark:border-slate-800 text-[15px] text-slate-700 dark:text-slate-300 hover:border-accent hover:text-accent dark:hover:text-accent-light transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-stone-200 dark:border-stone-800 text-[15px] text-stone-700 dark:text-stone-300 hover:border-accent hover:text-accent dark:hover:text-accent-light transition-colors"
               >
                 {s.icon}
                 {s.label}
@@ -103,9 +101,9 @@ export default function Hero() {
           transition={{ duration: 0.8, ease, delay: 0.2 }}
           className="order-1 lg:order-2 flex justify-center lg:block"
         >
-          <div className="relative w-36 h-36 sm:w-48 sm:h-48 lg:w-[400px] lg:h-[440px] rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-lg shadow-slate-200/60 dark:shadow-none bg-accent">
+          <div className="relative w-36 h-36 sm:w-48 sm:h-48 lg:w-[400px] lg:h-[440px] rounded-2xl overflow-hidden border border-stone-200 dark:border-stone-800 shadow-lg shadow-stone-200/60 dark:shadow-none bg-white">
             <Image
-              src="/images/headshot.jpg"
+              src="/images/headshot1.jpeg"
               alt="Muhammad Moosa Khalil"
               fill
               className="object-cover object-top"

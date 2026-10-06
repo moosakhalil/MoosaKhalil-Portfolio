@@ -14,9 +14,9 @@ function ProjectRow({ project, index, onOpen }: { project: Project; index: numbe
   const flip = index % 2 === 1;
 
   return (
-    <article className="group grid lg:grid-cols-2 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 overflow-hidden hover:border-accent/40 hover:shadow-xl hover:shadow-slate-200/60 dark:hover:shadow-none transition-all duration-500">
+    <article className="group grid lg:grid-cols-2 rounded-2xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900/40 overflow-hidden hover:border-accent/40 hover:shadow-xl hover:shadow-stone-200/60 dark:hover:shadow-none transition-all duration-500">
       <div
-        className={`relative bg-slate-50 dark:bg-slate-900 border-b lg:border-b-0 border-slate-200 dark:border-slate-800 ${
+        className={`relative bg-stone-50 dark:bg-stone-900 border-b lg:border-b-0 border-stone-200 dark:border-stone-800 ${
           flip ? "lg:order-2 lg:border-l" : "lg:border-r"
         }`}
       >
@@ -37,12 +37,12 @@ function ProjectRow({ project, index, onOpen }: { project: Project; index: numbe
 
       <div className="p-6 sm:p-8 lg:p-10 flex flex-col min-w-0">
         <p className="text-sm font-semibold uppercase tracking-wider text-accent dark:text-accent-light">{project.label}</p>
-        <h3 className="mt-3 text-2xl md:text-3xl font-semibold tracking-tight text-slate-900 dark:text-white">{project.name}</h3>
-        <p className="mt-1 text-base md:text-lg text-slate-500 dark:text-slate-400">{project.tagline}</p>
+        <h3 className="mt-3 text-2xl md:text-3xl font-semibold tracking-tight text-stone-900 dark:text-white">{project.name}</h3>
+        <p className="mt-1 text-base md:text-lg text-stone-500 dark:text-stone-400">{project.tagline}</p>
 
-        <p className="mt-5 text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">{project.description}</p>
-        <p className="mt-4 text-base text-slate-600 dark:text-slate-400">
-          <span className="font-semibold text-slate-800 dark:text-slate-200">Role: </span>
+        <p className="mt-5 text-base md:text-lg text-stone-600 dark:text-stone-300 leading-relaxed">{project.description}</p>
+        <p className="mt-4 text-base text-stone-600 dark:text-stone-400">
+          <span className="font-semibold text-stone-800 dark:text-stone-200">Role: </span>
           {project.role}
         </p>
 
@@ -60,14 +60,14 @@ function ProjectRow({ project, index, onOpen }: { project: Project; index: numbe
             className="group/btn inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-accent text-white text-base font-medium hover:bg-accent-dark transition-colors"
           >
             Case study
-            <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
+            <ArrowRight className="w-5 h-5 group-hover/btn:transtone-x-1 transition-transform" />
           </button>
           {project.url && (
             <a
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-5 py-3 rounded-lg border border-slate-300 dark:border-slate-700 text-base font-medium text-slate-800 dark:text-slate-100 hover:border-accent hover:text-accent dark:hover:text-accent-light transition-colors"
+              className="inline-flex items-center gap-1.5 px-5 py-3 rounded-lg border border-stone-300 dark:border-stone-700 text-base font-medium text-stone-800 dark:text-stone-100 hover:border-accent hover:text-accent dark:hover:text-accent-light transition-colors"
             >
               Live site <ArrowUpRight className="w-5 h-5" />
             </a>
@@ -77,7 +77,7 @@ function ProjectRow({ project, index, onOpen }: { project: Project; index: numbe
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-5 py-3 rounded-lg border border-slate-300 dark:border-slate-700 text-base font-medium text-slate-800 dark:text-slate-100 hover:border-accent hover:text-accent dark:hover:text-accent-light transition-colors"
+              className="inline-flex items-center gap-1.5 px-5 py-3 rounded-lg border border-stone-300 dark:border-stone-700 text-base font-medium text-stone-800 dark:text-stone-100 hover:border-accent hover:text-accent dark:hover:text-accent-light transition-colors"
             >
               Source <ArrowUpRight className="w-5 h-5" />
             </a>
@@ -112,7 +112,7 @@ export default function Projects() {
               className={`px-4 py-2 rounded-lg text-[15px] font-medium transition-colors ${
                 active
                   ? "bg-accent text-white"
-                  : "border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-accent hover:text-accent dark:hover:text-accent-light"
+                  : "border border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-300 hover:border-accent hover:text-accent dark:hover:text-accent-light"
               }`}
             >
               {opt ?? "All"}

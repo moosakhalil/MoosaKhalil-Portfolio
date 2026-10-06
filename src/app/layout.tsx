@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { IBM_Plex_Sans, Newsreader } from "next/font/google";
 import Providers from "./providers";
 import { contactInfo, siteUrl } from "@/lib/data";
 import "./globals.css";
 
-const inter = Inter({
+const body = IBM_Plex_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-body",
   display: "swap",
+});
+
+const display = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+  adjustFontFallback: false,
 });
 
 const title = "Muhammad Moosa Khalil | Full-Stack Software Engineer";
@@ -63,7 +71,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} antialiased`}>
+      <body className={`${body.variable} ${display.variable} antialiased`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}

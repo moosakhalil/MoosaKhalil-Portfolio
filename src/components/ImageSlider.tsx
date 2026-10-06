@@ -52,7 +52,7 @@ export default function ImageSlider({
   if (images.length === 0) return null;
 
   const fit = { cover: "object-cover", contain: "object-contain", fill: "object-fill" }[objectFit];
-  const frame = `relative ${aspectRatio} ${rounded} overflow-hidden bg-slate-50 dark:bg-slate-900 ${zoomable ? "cursor-zoom-in" : ""}`;
+  const frame = `relative ${aspectRatio} ${rounded} overflow-hidden bg-stone-50 dark:bg-stone-900 ${zoomable ? "cursor-zoom-in" : ""}`;
 
   const variants = {
     enter: (d: number) => ({ x: d > 0 ? "6%" : "-6%", opacity: 0 }),
@@ -94,7 +94,7 @@ export default function ImageSlider({
         </AnimatePresence>
 
         {zoomable && (
-          <span className="absolute top-3 left-3 p-1.5 rounded-lg bg-slate-900/60 text-white opacity-100 md:opacity-0 md:group-hover/slider:opacity-100 transition-opacity">
+          <span className="absolute top-3 left-3 p-1.5 rounded-lg bg-stone-900/60 text-white opacity-100 md:opacity-0 md:group-hover/slider:opacity-100 transition-opacity">
             <Maximize2 className="w-3.5 h-3.5" />
           </span>
         )}
@@ -105,21 +105,21 @@ export default function ImageSlider({
           {/* Nav arrows: always visible on touch, on hover for desktop */}
           <button
             onClick={(e) => { stop(e); prev(); }}
-            className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/95 shadow-md opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100 focus-visible:opacity-100 transition-opacity hover:bg-accent hover:text-white text-slate-700"
+            className="absolute left-3 top-1/2 -transtone-y-1/2 p-2 rounded-full bg-white/95 shadow-md opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100 focus-visible:opacity-100 transition-opacity hover:bg-accent hover:text-white text-stone-700"
             aria-label="Previous image"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={(e) => { stop(e); next(); }}
-            className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/95 shadow-md opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100 focus-visible:opacity-100 transition-opacity hover:bg-accent hover:text-white text-slate-700"
+            className="absolute right-3 top-1/2 -transtone-y-1/2 p-2 rounded-full bg-white/95 shadow-md opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100 focus-visible:opacity-100 transition-opacity hover:bg-accent hover:text-white text-stone-700"
             aria-label="Next image"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
 
           {/* Dots */}
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 px-2 py-1 rounded-full bg-slate-900/30 backdrop-blur-sm">
+          <div className="absolute bottom-3 left-1/2 -transtone-x-1/2 flex gap-1.5 px-2 py-1 rounded-full bg-stone-900/30 backdrop-blur-sm">
             {images.map((_, idx) => (
               <button
                 key={idx}

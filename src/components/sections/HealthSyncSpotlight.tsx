@@ -13,10 +13,10 @@ const facts = [
 
 export default function HealthSyncSpotlight() {
   return (
-    <Section id="health-sync" label="Final year project" title="Health Sync — telehealth & remote patient monitoring">
+    <Section id="health-sync" label="Final year project" title="Health Sync: telehealth & remote patient monitoring">
       <div className="grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-start">
         <Reveal>
-          <div className="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-lg shadow-slate-200/60 dark:shadow-none">
+          <div className="rounded-2xl border border-stone-200 dark:border-stone-800 overflow-hidden shadow-lg shadow-stone-200/60 dark:shadow-none">
             <ImageSlider
               images={healthSyncImages}
               alt="Health Sync"
@@ -30,7 +30,7 @@ export default function HealthSyncSpotlight() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
+          <p className="text-lg md:text-xl text-stone-600 dark:text-stone-300 leading-relaxed">
             Health Sync connects patients and clinicians with real-time heart-rate tracking from Fitbit wearables, built on
             Next.js with a PostgreSQL schema designed in Prisma on Supabase.
           </p>
@@ -42,8 +42,8 @@ export default function HealthSyncSpotlight() {
                   <Icon className="w-6 h-6" />
                 </span>
                 <div>
-                  <p className="text-lg font-semibold text-slate-900 dark:text-white">{value}</p>
-                  <p className="text-base text-slate-500 dark:text-slate-400">{label}</p>
+                  <p className="text-lg font-semibold text-stone-900 dark:text-white">{value}</p>
+                  <p className="text-base text-stone-500 dark:text-stone-400">{label}</p>
                 </div>
               </li>
             ))}
@@ -61,7 +61,7 @@ export default function HealthSyncSpotlight() {
             href="https://www.health-sync.live/"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-accent text-white text-base font-medium hover:bg-accent-dark hover:-translate-y-0.5 transition-all"
+            className="mt-8 inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-accent text-white text-base font-medium hover:bg-accent-dark hover:-transtone-y-0.5 transition-all"
           >
             Visit health-sync.live <ArrowUpRight className="w-5 h-5" />
           </a>

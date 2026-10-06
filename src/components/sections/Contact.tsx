@@ -22,7 +22,7 @@ export default function Contact() {
       setToast("Email copied to clipboard");
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      setToast("Couldn't copy — please copy it manually");
+      setToast("Couldn't copy, please copy it manually");
     }
   };
 
@@ -48,16 +48,16 @@ export default function Contact() {
                 href={href}
                 target={external ? "_blank" : undefined}
                 rel="noopener noreferrer"
-                className="group h-full flex items-center gap-4 md:gap-5 p-5 md:p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 hover:border-accent hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                className="group h-full flex items-center gap-4 md:gap-5 p-5 md:p-6 rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900/40 hover:border-accent hover:shadow-lg hover:-transtone-y-1 transition-all duration-300"
               >
                 <span className="flex items-center justify-center w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-lg bg-accent-50 dark:bg-accent/15 text-accent dark:text-accent-light group-hover:bg-accent group-hover:text-white transition-colors duration-300">
                   <Icon className="w-6 h-6" />
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">{label}</span>
-                  <span className="block text-base md:text-lg font-medium text-slate-900 dark:text-white break-all">{value}</span>
+                  <span className="block text-sm font-semibold uppercase tracking-wider text-stone-500 dark:text-stone-400">{label}</span>
+                  <span className="block text-base md:text-lg font-medium text-stone-900 dark:text-white break-all">{value}</span>
                 </span>
-                <ArrowUpRight className="w-5 h-5 shrink-0 text-slate-400 group-hover:text-accent group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
+                <ArrowUpRight className="w-5 h-5 shrink-0 text-stone-400 group-hover:text-accent group-hover:-transtone-y-0.5 group-hover:transtone-x-0.5 transition-all" />
               </a>
             </RevealItem>
           ))}
@@ -71,21 +71,21 @@ export default function Contact() {
             {copied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
             {copied ? "Email copied" : "Copy email address"}
           </button>
-          <p className="flex items-center gap-2 text-base text-slate-600 dark:text-slate-400">
+          <p className="flex items-center gap-2 text-base text-stone-600 dark:text-stone-400">
             <MapPin className="w-5 h-5 text-accent dark:text-accent-light" />
             {contactInfo.location} · Open to remote
           </p>
         </div>
       </Section>
 
-      <footer className="border-t border-slate-200 dark:border-slate-800">
+      <footer className="border-t border-stone-200 dark:border-stone-800">
         <div className="max-w-6xl mx-auto px-5 sm:px-8 py-10 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-base text-slate-500 dark:text-slate-400 text-center md:text-left">
+          <p className="text-base text-stone-500 dark:text-stone-400 text-center md:text-left">
             © {new Date().getFullYear()} Muhammad Moosa Khalil
           </p>
           <nav className="flex flex-wrap justify-center gap-x-6 gap-y-3">
             {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="text-base text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-light transition-colors">
+              <a key={link.href} href={link.href} className="text-base text-stone-500 dark:text-stone-400 hover:text-accent dark:hover:text-accent-light transition-colors">
                 {link.label}
               </a>
             ))}

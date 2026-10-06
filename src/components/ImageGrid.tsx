@@ -27,7 +27,7 @@ export default function ImageGrid({
           <button
             key={src}
             onClick={() => setIndex(i)}
-            className={`relative ${aspect} overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 cursor-zoom-in hover:border-accent/50 hover:shadow-md transition-all`}
+            className={`relative ${aspect} overflow-hidden rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 cursor-zoom-in hover:border-accent/50 hover:shadow-md transition-all`}
             aria-label={`View ${alt} photo ${i + 1}`}
           >
             <Image

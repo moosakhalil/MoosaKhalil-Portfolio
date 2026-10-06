@@ -51,11 +51,11 @@ export default function Lightbox({ images, alt, index, onClose }: LightboxProps)
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[200] bg-slate-950/90 backdrop-blur-sm flex items-center justify-center p-4 sm:p-10"
+          className="fixed inset-0 z-[200] bg-stone-950/90 backdrop-blur-sm flex items-center justify-center p-4 sm:p-10"
           onClick={onClose}
           role="dialog"
           aria-modal="true"
-          aria-label={`${alt} — image viewer`}
+          aria-label={`${alt} image viewer`}
         >
           <button
             onClick={onClose}
@@ -93,19 +93,19 @@ export default function Lightbox({ images, alt, index, onClose }: LightboxProps)
             <>
               <button
                 onClick={(e) => { e.stopPropagation(); prev(); }}
-                className="absolute z-20 left-3 sm:left-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+                className="absolute z-20 left-3 sm:left-6 top-1/2 -transtone-y-1/2 p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
                 aria-label="Previous image"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
               <button
                 onClick={(e) => { e.stopPropagation(); next(); }}
-                className="absolute z-20 right-3 sm:right-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+                className="absolute z-20 right-3 sm:right-6 top-1/2 -transtone-y-1/2 p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
                 aria-label="Next image"
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
-              <p className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2 text-sm font-semibold text-white/80">
+              <p className="absolute z-20 bottom-4 left-1/2 -transtone-x-1/2 text-sm font-semibold text-white/80">
                 {current + 1} / {images.length}
               </p>
             </>

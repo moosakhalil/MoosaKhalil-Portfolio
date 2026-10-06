@@ -83,7 +83,7 @@ export const experiences = [
     company: "Confidential Client",
     subtitle: "ERP / E-Commerce and Laundry Services Applications",
     location: "Remote",
-    date: "Nov 2025 – Present",
+    date: "Nov 2025 - Present",
     nda: true,
     current: true,
     bullets: [
@@ -102,7 +102,7 @@ export const experiences = [
     company: "Jazba Innovations",
     subtitle: "",
     location: "Islamabad",
-    date: "Jul 2025 – Aug 2025",
+    date: "Jul 2025 - Aug 2025",
     nda: false,
     current: false,
     bullets: [
@@ -147,12 +147,12 @@ export const projects: Project[] = [
     name: "Rental Management System",
     tagline: "Full-stack car rental agency platform",
     label: "Built for a client · Private",
-    privateNote: "Private client project — source and live system are not public.",
+    privateNote: "Private client project. Source and live system are not public.",
     stack: ["React.js", "Node.js", "Express.js", "MongoDB", "Tailwind CSS", "JWT", "Mongoose", "Vite", "jsPDF"],
     tags: ["RBAC", "AES-256-GCM", "Rate Limiting", "Audit Logging", "Vercel", "Render", "REST APIs"],
     description:
       "Independently built and deployed a MERN platform that runs a car rental agency's fleet, rentals, invoicing, payouts and P&L.",
-    role: "Sole developer — architecture, MongoDB schema, Express.js APIs, React.js UI and deployment.",
+    role: "Sole developer: architecture, MongoDB schema, Express.js APIs, React.js UI and deployment.",
     highlights: [
       "Business modules for fleet management, rental agreements, invoicing, owner/vendor payouts, expense tracking, staff salaries and profit & loss reporting.",
       "8-step rental agreement wizard producing printable bilingual (English/Urdu) agreements, invoices and payment vouchers exported to PDF.",
@@ -177,7 +177,7 @@ export const projects: Project[] = [
     tags: ["SQL", "REST APIs"],
     description:
       "Telehealth platform with real-time heart-rate tracking via Fitbit. NUST COMPPEC award and 3rd place at Bahria Open House.",
-    role: "Full-stack developer — database design, Fitbit API integration and the Next.js interface.",
+    role: "Full-stack developer: database design, Fitbit API integration and the Next.js interface.",
     highlights: [
       "End-to-end telehealth and remote patient monitoring with real-time heart-rate tracking via Fitbit wearable API integration.",
       "PostgreSQL schema designed with Prisma ORM on Supabase.",
@@ -225,7 +225,7 @@ export const projects: Project[] = [
     tags: ["JavaScript", "Vercel"],
     description:
       "Live football scores and statistics from a third-party REST API, with client-side caching for fast responses.",
-    role: "Solo developer — UI, API integration and caching.",
+    role: "Solo developer: UI, API integration and caching.",
     highlights: [
       "Live football scores and statistics in React.js via third-party REST API integration.",
       "Client-side caching for faster response times and fewer API calls.",

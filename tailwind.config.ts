@@ -11,27 +11,27 @@ const config: Config = {
     extend: {
       colors: {
         background: "#ffffff",
-        foreground: "#0f172a",
-        // Single theme color (blue-600 family)
+        foreground: "#1c1917",
+        // Single theme color (warm rust)
         accent: {
-          DEFAULT: "#2563eb",
-          light: "#60a5fa",
-          dark: "#1d4ed8",
-          50: "#eff6ff",
-          100: "#dbeafe",
-          200: "#bfdbfe",
+          DEFAULT: "#b4532a",
+          light: "#e08a5f",
+          dark: "#8f3f1d",
+          50: "#fbf3ee",
+          100: "#f5e1d4",
+          200: "#ebc2a8",
         },
         surface: {
           DEFAULT: "#ffffff",
-          elevated: "#f8fafc",
-          muted: "#f1f5f9",
+          elevated: "#fafaf9",
+          muted: "#f5f5f4",
         },
-        muted: "#64748b",
-        border: "#e2e8f0",
+        muted: "#78716c",
+        border: "#e7e5e4",
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-inter)", "system-ui", "sans-serif"],
+        sans: ["var(--font-body)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "Georgia", "serif"],
       },
       animation: {
         float: "float 4s ease-in-out infinite",

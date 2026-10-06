@@ -17,17 +17,17 @@ export default function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="py-20 md:py-28 border-t border-slate-200 dark:border-slate-800">
+    <section id={id} className="py-20 md:py-28 border-t border-stone-200 dark:border-stone-800">
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
         <Reveal className="mb-12 md:mb-16 max-w-3xl">
           <p className="flex items-center gap-3 text-sm md:text-base font-semibold uppercase tracking-wider text-accent dark:text-accent-light mb-4">
             <span className="h-px w-8 bg-accent dark:bg-accent-light" />
             {label}
           </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 dark:text-white leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-stone-900 dark:text-white leading-tight">
             {title}
           </h2>
-          {intro && <p className="mt-5 text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed">{intro}</p>}
+          {intro && <p className="mt-5 text-lg md:text-xl text-stone-600 dark:text-stone-400 leading-relaxed">{intro}</p>}
         </Reveal>
         {children}
       </div>
