@@ -215,6 +215,37 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "hisaab-kitab",
+    name: "Hisaab Kitab",
+    tagline: "Free personal-finance app for Pakistan, in English and Urdu",
+    label: "Personal project · Live",
+    privateNote: "Private project. Source code is not public.",
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL (Supabase)", "Drizzle ORM", "Better Auth"],
+    tags: [
+      "PWA", "Serwist", "Service Workers", "Web Push", "Offline-first", "i18n", "RTL", "Urdu", "Zod", "pdf-lib",
+      "Vercel Cron", "Vitest", "Playwright", "Lighthouse", "Accessibility", "WebAuthn", "REST APIs",
+    ],
+    description:
+      "A mobile-first personal-finance app built for Pakistani users. It tracks accounts, budgets, loans, savings and bills, and also includes a Zakat calculator and a Committee (BC) tracker. It installs on a phone as a PWA, works offline, and runs in English and Urdu (RTL). Used by 50+ people.",
+    role: "Sole designer and developer. I planned the product, designed the UI, and built the full stack, including the database schema, authentication, background jobs and test suites. I also wrote the user handbook and ran a real-device test round on Android and iPhone.",
+    highlights: [
+      "In active use by 50+ real users.",
+      "Full money tracking: accounts, ledger, budgets, loans, savings, bills, repeating entries, and a \"safe to spend\" figure.",
+      "Pakistan-specific tools: Committee/BC tracker and a Zakat calculator.",
+      "Installable PWA with offline entry. Entries added offline sync later, and a client-generated ID prevents duplicates.",
+      "Bilingual UI (English and Urdu, right-to-left) with a CI test that fails if any screen text is missing its Urdu translation. Urdu text is also supported in PDF reports.",
+      "Privacy and security: PIN and fingerprint/Face ID app lock, a hide-amounts toggle on Home (amounts start hidden), and security headers. A 94-check security test found no cross-user data leaks.",
+      "13 report types exported to PDF/CSV, plus full data export, JSON backup/restore and account deletion. Reminders and weekly/monthly summaries run through push notifications and a daily cron job.",
+      "Quality: 400+ unit tests plus API and browser test scripts, Lighthouse Accessibility 100, and 0 axe violations. Tested on real Android and iPhone devices.",
+    ],
+    images: [
+      "/images/home.png",
+      "/images/budgets.png",
+      "/images/committee.png",
+      "/images/insights.png",
+    ],
+  },
+  {
     slug: "footy-insights",
     name: "Footy Insights",
     tagline: "Real-time football statistics",
