@@ -246,6 +246,35 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "mustaqbil-prep",
+    name: "Mustaqbil Prep",
+    tagline: "Mobile practice app for degree courses and military initial tests, with guard-railed AI help",
+    label: "Personal project · Live",
+    // url: add your Vercel link once the phone check is done
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Drizzle ORM"],
+    tags: [
+      "Progressive Web App", "Service Workers", "Better Auth", "Google OAuth", "Neon", "Vercel",
+      "AI integration", "Zod", "Vitest", "REST APIs", "PDF generation", "Accessibility",
+    ],
+    description:
+      "A free, installable practice app for software-engineering students and for candidates preparing for ICTO, LCC, Navy IT and PAF IT initial tests. It offers practice and timed-exam quizzes, military mock tests with a per-part pass rule, and AI explanations and study plans that never decide an answer.",
+    role: "Product owner and developer. I defined the product and the military test flow, chose and organised the question banks, designed the screens, and built and shipped the app end to end using AI-assisted development. I also ran a screen-by-screen UI review of 23 screens and fixed what it found.",
+    highlights: [
+      "25 degree-course banks (6,600+ questions) plus military Verbal, Non-verbal, Academic and past-paper sections, with a full mock test that applies a 50%-in-each-part pass rule.",
+      "Practice and timed-exam modes, wrong-answer notebook, per-topic progress, and PDF results that can be viewed or downloaded.",
+      "AI with guardrails: it explains answers but never decides them, gives study plans from a user's own scores, and is limited to 10 requests per user per day with saved explanations and no personal data sent.",
+      "Installable and works offline, using a service worker and cached question banks; quizzes taken offline sync when the phone is back online.",
+      "Google sign-in, server-only database access, input validation and security headers on every API route, plus 65 automated tests.",
+      "Accessibility and mobile polish: 44px tap targets, visible keyboard focus, dark mode, loading placeholders and a screen-by-screen current-vs-proposed UI review.",
+    ],
+    images: [
+      "/images/1-hero-signin-install-dark.png",
+      "/images/2-signin.png",
+      "/images/3-install-on-iphone.png",
+      "/images/4-works-offline.png",
+    ],
+  },
+  {
     slug: "footy-insights",
     name: "Footy Insights",
     tagline: "Real-time football statistics",
