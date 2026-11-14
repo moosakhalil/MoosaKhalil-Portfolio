@@ -12,7 +12,7 @@ export const navLinks = [
 
 // Hero proof strip
 export const heroStats = [
-  { value: 4, label: "Deployed apps" },
+  { value: 5, label: "Deployed apps" },
   { value: 2, label: "Client apps in progress" },
   { value: 2, label: "Awards" },
 ];
