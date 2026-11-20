@@ -22,6 +22,11 @@ jobs:
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
 
+      # The output branch only holds the snake SVGs. This tells Vercel to skip building it,
+      # which stops the "Preview deployment failed" emails after every run.
+      - name: Tell Vercel to skip this branch
+        run: echo '{ "ignoreCommand": "exit 0" }' > dist/vercel.json
+
       - uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
           target_branch: output

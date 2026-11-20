@@ -388,6 +388,29 @@ img{max-width:100%;display:block}
 .snk-s{display:block;overflow-x:auto}
 .snk-s img{display:block;width:100%;min-width:640px;height:auto}
 
+
+/* mobile refinements (phones and small tablets; desktop is untouched) */
+@keyframes sonarm{from{transform:scale(.85);opacity:.32}to{transform:scale(1.28);opacity:0}}
+@media(max-width:899px){
+  .pw{--s:min(78vw,330px);margin:24px auto 0}
+  .sonar i{animation-name:sonarm}
+  .coord{display:none}
+  .now{margin-top:30px;max-width:340px}
+  .ghost{display:none}
+  .proof{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .pf img{width:100%;height:auto}
+  .flow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 32px;padding:18px 20px;overflow:visible}
+  .flow .lnk{display:none}
+  .flow .node{position:relative;text-align:center;white-space:normal}
+  .flow .node:nth-child(1)::after,.flow .node:nth-child(5)::after{content:"\2192";position:absolute;right:-22px;top:50%;transform:translateY(-50%);color:var(--acc);font-size:15px}
+  .flow .node:nth-child(3)::after{content:"\2199";position:absolute;left:50%;bottom:-24px;transform:translateX(-50%);color:var(--acc);font-size:15px}
+}
+@media(max-width:360px){
+  .nav .mk{width:30px;height:30px;font-size:12px}
+  .nav a.l.keep{padding:8px 8px;font-size:12.5px}
+  .nav a.cv{padding:8px 10px;font-size:12.5px}
+}
+
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}
