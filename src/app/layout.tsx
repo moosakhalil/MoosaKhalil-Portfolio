@@ -1,22 +1,6 @@
-import type { Metadata } from "next";
-import { IBM_Plex_Sans, Newsreader } from "next/font/google";
-import Providers from "./providers";
+import type { Metadata, Viewport } from "next";
 import { contactInfo, siteUrl } from "@/lib/data";
 import "./globals.css";
-
-const body = IBM_Plex_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-body",
-  display: "swap",
-});
-
-const display = Newsreader({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-  adjustFontFallback: false,
-});
 
 const title = "Muhammad Moosa Khalil | Full-Stack Software Engineer";
 const description =
@@ -51,6 +35,13 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#E8EFF4",
+};
+
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -64,6 +55,10 @@ const personJsonLd = {
   knowsAbout: ["React.js", "Next.js", "Node.js", "TypeScript", "MongoDB", "PostgreSQL"],
 };
 
+// Fonts: Anybody (display, variable width and weight), Geist (body) and Geist Mono (labels).
+const fontsHref =
+  "https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&display=swap";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -71,12 +66,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${body.variable} ${display.variable} antialiased`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+        <link rel="stylesheet" href={fontsHref} />
+      </head>
+      <body>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
-        <Providers>{children}</Providers>
+        {children}
       </body>
     </html>
   );

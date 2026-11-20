@@ -1,0 +1,275 @@
+<div class="bar" id="bar"></div>
+<canvas id="snow" aria-hidden="true"></canvas>
+<div class="torch" id="torch" aria-hidden="true"></div>
+<div class="gauge" id="gauge" aria-hidden="true"><div class="g-depth" id="gDepth">0000 m</div><div class="g-line"></div><div class="g-fill" id="gFill"></div><div id="gTicks"></div><div class="g-mark" id="gMark"></div><div class="g-lab" id="gLab">Surface</div></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-gh" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
+<symbol id="i-in" viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6S0 4.88 0 3.5 1.11 1 2.49 1s2.49 1.12 2.49 2.5zM.22 8h4.5v14H.22V8zm7.5 0h4.3v1.9h.06c.6-1.1 2.07-2.3 4.26-2.3 4.56 0 5.4 3 5.4 6.9V22h-4.5v-6.5c0-1.55-.03-3.55-2.16-3.55-2.16 0-2.5 1.7-2.5 3.44V22h-4.5V8z"/></symbol>
+<symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
+</defs></svg>
+<div class="lbx" id="lbx" hidden role="dialog" aria-modal="true" aria-label="Enlarged image"><button class="lbx-x" id="lbxX" type="button" aria-label="Close">&times;</button><button class="lbx-p" id="lbxP" type="button" aria-label="Previous image">&lsaquo;</button><button class="lbx-n" id="lbxN" type="button" aria-label="Next image">&rsaquo;</button><img id="lbxImg" alt=""><p id="lbxCap"></p></div>
+
+<nav class="nav" aria-label="Primary">
+  <a class="mk" href="#top" aria-label="Back to top">MK</a>
+  <a class="l" href="#about" data-s="about">About</a>
+  <a class="l keep" href="#work" data-s="work">Work</a>
+  <a class="l" href="#experience" data-s="experience">Experience</a>
+  <a class="l" href="#stack" data-s="stack">Stack</a>
+  <a class="l keep" href="#contact" data-s="contact">Contact</a>
+  <a class="cv" href="/Moosa_CV.pdf" target="_blank" rel="noopener"><svg class="ic"><use href="#i-doc"/></svg>Résumé</a>
+</nav>
+
+<main>
+<!-- SURFACE -->
+<section id="top" class="layer t-surface hero" data-layer="Surface">
+  <canvas id="ripples" aria-hidden="true"></canvas>
+  <div class="wrap hero-in">
+    <div class="h-left">
+    <div class="status"><i class="pulse"></i>Open to full-time Software Engineer roles</div>
+
+    <h1 class="name" id="name" aria-label="Moosa Khalil">
+      <span class="ln" aria-hidden="true" data-t="Moosa"></span>
+      <span class="ln" aria-hidden="true" data-t="Khalil" data-dot="1"></span>
+    </h1>
+
+    <div class="hero-row">
+        <p class="lede"><b>Full-stack software engineer.</b> I build production web apps end to end, from the schema and the secure API to the screen people use.</p>
+        <div class="ctas">
+          <a class="btn pri" href="#work">See the work <span aria-hidden="true">↓</span></a>
+          <a class="btn" href="/Moosa_CV.pdf" target="_blank" rel="noopener"><svg class="ic"><use href="#i-doc"/></svg>Résumé (PDF)</a>
+        </div>
+    </div>
+    </div>
+
+    <div class="pw">
+      <div class="sonar" aria-hidden="true"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i></div>
+      <span class="coord" aria-hidden="true">33.68°N 73.05°E</span>
+      <div class="porthole" id="porthole">
+        <div class="ph-in" id="phIn">
+          <div class="ph-ring"></div>
+          <svg class="ph-text" viewBox="0 0 400 400" aria-hidden="true"><defs><path id="circ" d="M200,200 m-172,0 a172,172 0 1,1 344,0 a172,172 0 1,1 -344,0"/></defs><text><textPath href="#circ" textLength="1076" lengthAdjust="spacing">FULL-STACK ENGINEER • ISLAMABAD • BS SOFTWARE ENGINEERING 2026 • </textPath></text></svg>
+          <div class="ph-glass"><img src="/images/headshot1.jpeg" alt="Portrait of Muhammad Moosa Khalil" width="319" height="421"></div>
+          <div id="bolts"></div>
+        </div>
+      </div>
+      <div class="now"><b><i></i>Now building</b>An ERP and e-commerce system plus a laundry services app, for a client.</div>
+    </div>
+
+      <dl class="reads">
+        <div><dd data-n="6">6</dd><dt>Products shipped</dt></div>
+        <div><dd data-n="2">2</dd><dt>Client apps in build</dt></div>
+        <div><dd data-n="2">2</dd><dt>Awards</dt></div>
+        <div><dd data-n="50" data-s="+">50+</dd><dt>Real users</dt></div>
+      </dl>
+  </div>
+  <a class="cue" href="#about">Dive<i></i></a>
+</section>
+
+<!-- INTERFACE -->
+<section id="about" class="layer t-shallow about" data-layer="Interface">
+  <div class="wrap">
+    <p class="eyebrow rv"><b>Layer 00</b> Interface</p>
+    <p class="manifesto" id="manifesto">I own the whole request. The schema it lands in, the API that guards it, and the screen a person taps to send it. Six products shipped that way, from a rental platform for a car agency to a bilingual finance app that 50+ people use.</p>
+    <dl class="spec">
+      <div class="rv"><dt>Education</dt><dd>BS Software Engineering, Bahria University, Islamabad. 2022 to 2026.</dd></div>
+      <div class="rv"><dt>Schooling</dt><dd>Matric and FSc Pre-Engineering, Cadet College Petaro. 2017 to 2021.</dd></div>
+      <div class="rv"><dt>Right now</dt><dd>Building two production apps for a client, working remotely.</dd></div>
+      <div class="rv"><dt>Based in</dt><dd>Islamabad, Pakistan.</dd></div>
+    </dl>
+    <p class="eyebrow marq-l rv"><b>Daily drivers</b> What I build with</p>
+  </div>
+  <div class="wrap"><div class="marq rv" aria-hidden="true"><div class="marq-track" id="marq"></div></div></div>
+  <div class="wave" aria-hidden="true">
+    <svg class="w2" viewBox="0 0 2400 120" preserveAspectRatio="none"><path fill="#3E6E94" d="M0,70 C200,20 400,20 600,70 S1000,120 1200,70 S1600,20 1800,70 S2200,120 2400,70 V120 H0Z"/></svg>
+    <svg class="w1" viewBox="0 0 2400 120" preserveAspectRatio="none"><path fill="#0E3157" d="M0,60 C200,0 400,0 600,60 S1000,120 1200,60 S1600,0 1800,60 S2200,120 2400,60 V120 H0Z"/></svg>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="work" class="layer t-deep work" data-layer="Services">
+  <div class="wrap work-head">
+    <p class="eyebrow rv"><b>Layer 01</b> Services</p>
+    <h2 class="h2 rv">Six products,<br>schema to screen.</h2>
+    <p class="sub rv">Keep scrolling and the stage moves through each one: what it does, what I built, and what it was built with.</p>
+  </div>
+  <div class="stage-scroll" id="stageScroll" style="--n:6">
+    <div class="stage-sticky">
+      <div class="wrap stage-grid" id="stageGrid"></div>
+      <div class="wrap rail" id="rail"></div>
+    </div>
+  </div>
+</section>
+
+<!-- DATA: experience -->
+<section id="experience" class="layer t-night exp" data-layer="Data">
+  <div class="wrap exp-grid">
+    <div class="exp-head">
+      <p class="eyebrow rv"><b>Layer 02</b> Data</p>
+      <h2 class="h2 rv">Deploy<br>log</h2>
+      <p class="rv">Where the work ran in production, newest first.</p>
+      <p class="nda-note rv">The current client is under NDA, so names and screenshots stay private.</p>
+    </div>
+    <div class="logs">
+      <article class="log live-card rv">
+        <div class="log-h"><i class="live"></i><span>2025-11 → now</span><span class="chip">In production</span></div>
+        <h3>Full-Stack Software Developer</h3>
+        <p class="co"><span class="redact">▮▮▮ Confidential client · under NDA</span><span>Remote</span></p>
+        <p class="sub">An ERP and e-commerce system, plus a separate laundry services app.</p>
+        <ul class="bl">
+          <li>Own delivery of full-stack features across both apps, from database schema and REST APIs to the production React.js interface.</li>
+          <li>Build the e-commerce storefront and the back-office ERP modules for orders, inventory, operations and reporting.</li>
+          <li>Design secure REST APIs with authentication and server-side access control, and integrate third-party services.</li>
+          <li>Ship through iterative client feedback cycles, with clean, reviewable code and production deployments.</li>
+        </ul>
+        <div class="flow" aria-label="Architecture: storefront to REST API to ERP modules to database">
+          <span class="node">Storefront</span><span class="lnk"></span><span class="node">REST API</span><span class="lnk" style="--d:.8s"></span><span class="node">ERP modules</span><span class="lnk" style="--d:1.6s"></span><span class="node">Database</span>
+        </div>
+        <ul class="chips"><li class="chip">React.js</li><li class="chip">Node.js</li><li class="chip">Express.js</li><li class="chip">REST APIs</li></ul>
+      </article>
+      <article class="log rv">
+        <div class="log-h"><i class="off"></i><span>2025-07 → 2025-08</span><span class="chip">Internship</span></div>
+        <h3>Software Development Intern</h3>
+        <p class="co"><b style="color:var(--fg);font-weight:600">Jazba Innovations</b><span>Islamabad</span></p>
+        <ul class="bl">
+          <li>Integrated Webpack and Tailwind CSS into the frontend build pipeline, improving build efficiency and developer workflow.</li>
+          <li>Joined Git and GitHub pull-request code reviews to keep coding standards consistent.</li>
+          <li>Worked with cross-functional teams in Agile and Scrum to deliver sprint features on schedule.</li>
+        </ul>
+        <ul class="chips"><li class="chip">Webpack</li><li class="chip">Tailwind CSS</li><li class="chip">Git</li><li class="chip">GitHub</li></ul>
+        <div class="proof">
+          <button class="pf" type="button" data-grp="jazba" data-src="/images/experience-1.jpg" data-cap="Jazba Innovations · Certificate of internship, 14 Jul to 22 Aug 2025"><img src="/images/experience-1.jpg" alt="Jazba Innovations certificate of internship" width="241" height="340"><span>Internship certificate</span></button>
+          <button class="pf" type="button" data-grp="jazba" data-src="/images/experience-2.jpg" data-cap="Jazba Innovations · Recognition post"><img src="/images/experience-2.jpg" alt="Jazba Innovations recognition post with an internship testimonial" width="272" height="340"><span>Recognition post</span></button>
+        </div>
+      </article>
+      <p class="sub-h rv">Education</p>
+      <article class="log edu rv">
+        <img class="lg" src="/images/logos/bahria.png" alt="Bahria University logo">
+        <div><div class="log-h"><i class="off"></i><span>2022 → 2026</span></div>
+        <h3>BS Software Engineering</h3>
+        <p class="co"><b style="color:var(--fg);font-weight:600">Bahria University</b><span>Islamabad</span></p>
+        <p class="sub" style="color:var(--mut);font-weight:400;font-size:15px">Data Structures, Algorithms, Database Systems, Web Engineering, Software Design Patterns.</p></div>
+      </article>
+      <article class="log edu rv">
+        <img class="lg" src="/images/logos/college.png" alt="Cadet College Petaro logo">
+        <div><div class="log-h"><i class="off"></i><span>2017 → 2021</span></div>
+        <h3>Matric and FSc Pre-Engineering</h3>
+        <p class="co"><b style="color:var(--fg);font-weight:600">Cadet College Petaro</b></p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- DATA: stack -->
+<section id="stack" class="layer t-night stack" data-layer="Data">
+  <div class="wrap">
+    <div class="stack-head">
+      <div>
+        <p class="eyebrow rv"><b>Schema</b> The toolbox, as tables</p>
+        <h2 class="h2 rv">Query<br>the stack</h2>
+      </div>
+      <div class="rv">
+        <label class="query" for="q"><span class="k">SELECT</span> * <span class="k">FROM</span> stack <span class="k">WHERE</span> name <span class="k">LIKE</span> '%<input id="q" type="text" placeholder="react" autocomplete="off" spellcheck="false" aria-label="Filter skills">%';</label>
+        <p class="qc" id="qc" style="margin-top:12px">Type a skill to light up matching rows.</p>
+      </div>
+    </div>
+    <div class="tables" id="tables"></div>
+  </div>
+</section>
+
+<!-- DATA: activity -->
+<section id="activity" class="layer t-night act" data-layer="Data">
+  <div class="wrap">
+    <div class="act-head">
+      <p class="eyebrow rv"><b>Activity</b> Commits, past year</p>
+      <h2 class="h2 rv">Always<br>building.</h2>
+      <p class="rv">A snake eating my GitHub contribution graph, regenerated every day from my real activity.</p>
+    </div>
+    <a class="snk rv" href="https://github.com/moosakhalil" target="_blank" rel="noopener" aria-label="View my GitHub profile">
+      <span class="snk-h"><span><svg class="ic f"><use href="#i-gh"/></svg>github.com/moosakhalil</span><em>My GitHub contributions over the past year</em></span>
+      <span class="snk-s"><img src="https://raw.githubusercontent.com/moosakhalil/MoosaKhalil-Portfolio/output/github-contribution-grid-snake-dark.svg" alt="Snake animation eating my GitHub contribution graph" width="880" height="192"></span>
+    </a>
+  </div>
+</section>
+
+<!-- CORE: recognition -->
+<section id="recognition" class="layer t-abyss rec" data-layer="Core">
+  <div class="wrap">
+    <p class="eyebrow rv"><b>Layer 03</b> Core</p>
+    <h2 class="h2 rv">Proof it<br>holds up</h2>
+    <div class="awc">
+      <article class="award rv">
+        <div class="gal">
+          <button class="gi" type="button" data-grp="nust" data-src="/images/image.jpg" data-cap="NUST COMPPEC 2026 · The Appreciation Award trophy"><img src="/images/image.jpg" alt="COMPPEC 26 Appreciation Award trophy held in a hand"></button>
+          <button class="gi" type="button" data-grp="nust" data-src="/images/nust-award-2.jpeg" data-cap="NUST COMPPEC 2026 · Holding the trophy and certificate of appreciation"><img src="/images/nust-award-2.jpeg" alt="Moosa holding the COMPPEC trophy and certificate of appreciation"></button>
+          <button class="gi" type="button" data-grp="nust" data-src="/images/win2.jpg" data-cap="NUST COMPPEC 2026 · With the team at Bahria University"><img src="/images/win2.jpg" alt="Team members with the certificate and trophy in front of the Bahria University backdrop"></button>
+        </div>
+        <div class="aw-b">
+          <span class="mono">NUST COMPPEC 2026</span>
+          <h3>Appreciation Award</h3>
+          <p>Recognized for innovation and technical excellence in the IoT &amp; Digital Solutions category at a national-level competition, presented to the NUST evaluation panel. Health Sync stood out for its integration of Fitbit data with provider workflows.</p>
+          <span class="chip">Health Sync · Final year project</span>
+        </div>
+      </article>
+      <article class="award rv">
+        <div class="gal">
+          <button class="gi" type="button" data-grp="open" data-src="/images/fyp-1.jpeg" data-cap="Bahria University Open House 2026 · 3rd position"><img src="/images/fyp-1.jpeg" alt="Two team members holding the 3rd position award"></button>
+          <button class="gi" type="button" data-grp="open" data-src="/images/fyp-2.jpeg" data-cap="Bahria University Open House 2026 · The 3rd position trophy"><img src="/images/fyp-2.jpeg" alt="The 3rd position Award of Appreciation trophy for Open House 2026"></button>
+        </div>
+        <div class="aw-b">
+          <span class="mono">Bahria University Open House 2026</span>
+          <h3>3rd Position, Final Year Project</h3>
+          <p>Placed third among final year projects at the Bahria University Open House, H-11 Campus, Islamabad, presenting Health Sync to faculty, industry guests and visitors.</p>
+          <span class="chip">Health Sync · Final year project</span>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="wrap">
+    <p class="eyebrow rv" style="margin-top:clamp(56px,8vw,110px)"><b>Certificates</b> Tap one to enlarge</p>
+    <div class="cgrid">
+      <button class="cc rv" type="button" data-grp="certs" data-src="/images/cert1.jpg" data-cap="Google Cloud · Gen AI: Beyond the Chatbot · Jun 2025"><span class="cc-img"><img src="/images/cert1.jpg" alt="Certificate: Gen AI Beyond the Chatbot"></span><span class="cc-t"><b>Google Cloud</b>Generative AI: Beyond the Chatbot<em>Jun 2025</em></span></button>
+      <button class="cc rv" type="button" data-grp="certs" data-src="/images/cert3.jpg" data-cap="Google · Foundations of User Experience (UX) Design · Jul 2025"><span class="cc-img"><img src="/images/cert3.jpg" alt="Certificate: Foundations of User Experience Design"></span><span class="cc-t"><b>Google</b>Foundations of User Experience (UX) Design<em>Jul 2025</em></span></button>
+      <button class="cc rv" type="button" data-grp="certs" data-src="/images/cert2.jpg" data-cap="Google · Foundations of Cybersecurity · Jun 2025"><span class="cc-img"><img src="/images/cert2.jpg" alt="Certificate: Foundations of Cybersecurity"></span><span class="cc-t"><b>Google</b>Foundations of Cybersecurity<em>Jun 2025</em></span></button>
+      <button class="cc rv" type="button" data-grp="certs" data-src="/images/cert4.jpg" data-cap="Meta · HTML and CSS in Depth · Aug 2025"><span class="cc-img"><img src="/images/cert4.jpg" alt="Certificate: HTML and CSS in Depth"></span><span class="cc-t"><b>Meta</b>HTML and CSS in Depth<em>Aug 2025</em></span></button>
+    </div>
+  </div>
+</section>
+
+<!-- CORE: contact -->
+<section id="contact" class="layer t-abyss contact" data-layer="Core">
+  <div class="wrap">
+    <p class="eyebrow rv"><b>Response</b> You reached the bottom</p>
+    <h2 class="big rv">Let's build something that <em>ships.</em></h2>
+    <div class="c-grid">
+      <div class="rv">
+        <div class="mail">
+          <a class="addr" href="mailto:moosamughal21@gmail.com" id="addr">moosamughal21@gmail.com</a>
+          <button class="copy" id="copy" type="button"><svg class="ic" style="vertical-align:-2px;margin-right:6px"><use href="#i-copy"/></svg><span>Copy</span></button>
+        </div>
+        <div class="c-links">
+          <a class="lk" href="https://linkedin.com/in/moosadev" target="_blank" rel="noopener"><svg class="ic f"><use href="#i-in"/></svg>LinkedIn</a>
+          <a class="lk" href="https://github.com/moosakhalil" target="_blank" rel="noopener"><svg class="ic f"><use href="#i-gh"/></svg>GitHub</a>
+          <a class="lk" href="/Moosa_CV.pdf" target="_blank" rel="noopener"><svg class="ic"><use href="#i-doc"/></svg>Résumé</a>
+        </div>
+        <div class="c-meta"><span><svg class="ic"><use href="#i-phone"/></svg>+92 331 2674909</span><span><svg class="ic"><use href="#i-pin"/></svg>Islamabad, Pakistan</span></div>
+      </div>
+      <pre class="http rv" aria-label="Status summary"><span class="ok">HTTP/1.1 200 OK</span>
+<span class="hk">Content-Type:</span> application/engineer
+<span class="hk">X-Name:</span> Muhammad Moosa Khalil
+<span class="hk">X-Role:</span> Full-Stack Software Engineer
+<span class="hk">X-Seeking:</span> full-time, Software Engineer
+<span class="hk">X-Location:</span> Islamabad, PK (works remotely)
+<span class="hk">X-Reply-Time:</span> as soon as I see it
+<span class="cur"></span></pre>
+    </div>
+    <div class="foot">
+      <span>© 2026 Muhammad Moosa Khalil. Built from the surface down.</span>
+      <button class="up" id="up" type="button">Resurface ↑</button>
+    </div>
+  </div>
+</section>
+</main>

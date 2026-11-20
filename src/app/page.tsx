@@ -1,29 +1,15 @@
-import Navbar from "@/components/Navbar";
-import BackToTop from "@/components/BackToTop";
-import Hero from "@/components/sections/Hero";
-import About from "@/components/sections/About";
-import Experience from "@/components/sections/Experience";
-import Projects from "@/components/sections/Projects";
-import GithubSnake from "@/components/sections/GithubSnake";
-import HealthSyncSpotlight from "@/components/sections/HealthSyncSpotlight";
-import Achievements from "@/components/sections/Achievements";
-import Contact from "@/components/sections/Contact";
+import fs from "node:fs";
+import path from "node:path";
+import PortfolioEffects from "@/components/portfolio/PortfolioEffects";
 
+// The page markup lives in src/content/portfolio.html (edit text, links and images there).
+// Behaviour (animations, galleries, scroll effects) lives in src/components/portfolio/initPortfolio.ts.
 export default function Home() {
+  const html = fs.readFileSync(path.join(process.cwd(), "src/content/portfolio.html"), "utf8");
   return (
     <>
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Experience />
-        <Projects />
-        <GithubSnake />
-        <HealthSyncSpotlight />
-        <Achievements />
-        <Contact />
-      </main>
-      <BackToTop />
+      <div dangerouslySetInnerHTML={{ __html: html }} />
+      <PortfolioEffects />
     </>
   );
 }
